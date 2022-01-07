@@ -24,7 +24,7 @@ jobs:
 
       - name: Identify version to build
         run: |
-          egrep "^ARG DOCKER_MACHINE_DRIVER_HETZNER_VERSION=" Dockerfile | sed "s|^ENV ||" >> $GITHUB_ENV
+          egrep "^ARG DOCKER_MACHINE_DRIVER_HETZNER_VERSION=" Dockerfile | sed "s|^ARG ||" >> $GITHUB_ENV
           echo "GITLAB_RUNNER_VERSION=$(egrep "^FROM gitlab/gitlab-runner:" Dockerfile | awk '{print $2}' | cut -d: -f2 | cut -d@ -f1)" >> $GITHUB_ENV
 
       - name: Build image
@@ -40,9 +40,11 @@ jobs:
           # Change all uppercase to lowercase
           IMAGE_ID="$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')"
 
+          IMAGE_ID_VERSIONED="${IMAGE_ID}:${GITLAB_RUNNER_VERSION}-machine-hetzner-v${DOCKER_MACHINE_DRIVER_HETZNER_VERSION}"
+
           # Use Docker `latest` tag convention
           echo IMAGE_ID="$IMAGE_ID"
-          echo IMAGE_ID_VERSIONED="${IMAGE_ID}:${GITLAB_RUNNER_VERSION}-machine-hetzner-v${DOCKER_MACHINE_DRIVER_HETZNER_VERSION}"
+          echo IMAGE_ID_VERSIONED="$IMAGE_ID_VERSIONED"
 
           docker tag "$IMAGE_NAME" "$IMAGE_ID_VERSIONED"
           docker tag "$IMAGE_NAME" "$IMAGE_ID:latest"
