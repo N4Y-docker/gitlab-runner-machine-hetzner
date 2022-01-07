@@ -11,7 +11,7 @@
     {
       "description": "Schedule digest updates weekly",
       "matchUpdateTypes": ["digest"],
-      "schedule": ["every 1 weeks"],
+      "schedule": ["every 7 days"],
       "automerge": true
     }
   ],
