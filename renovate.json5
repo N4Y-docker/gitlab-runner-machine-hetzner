@@ -16,7 +16,7 @@
     },
     {
       "matchPackageNames": ["golang"],
-      "versioning": "regex:^(?<major>\\d+\\.(?<minor>\\d+)\\.(?<patch>\\d+)-alpine\\d+\\.\\d+$"
+      "versioning": "regex:^(?<major>)\\d+\\.(?<minor>\\d+)\\.(?<patch>\\d+)-alpine\\d+\\.\\d+$"
     }
   ],
   "regexManagers": [
