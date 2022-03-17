@@ -13,10 +13,6 @@
       "matchUpdateTypes": ["digest"],
       "schedule": ["every 7 days"],
       "automerge": true
-    },
-    {
-      "matchPackageNames": ["golang"],
-      "versioning": "regex:^(?<major>)\\d+\\.(?<minor>\\d+)\\.(?<patch>\\d+)-alpine\\d+\\.\\d+$"
     }
   ],
   "regexManagers": [
