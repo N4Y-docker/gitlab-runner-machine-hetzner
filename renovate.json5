@@ -16,7 +16,7 @@
     },
     {
       "matchPackageNames": ["gitlab/gitlab-runner"],
-      "versioning": "regex:^alpine-(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)$"
+      "versioning": "regex:^alpine-v(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)$"
     }
   ],
   "regexManagers": [
