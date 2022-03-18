@@ -13,6 +13,10 @@
       "matchUpdateTypes": ["digest"],
       "schedule": ["every 7 days"],
       "automerge": true
+    },
+    {
+      "matchPackageNames": ["gitlab/gitlab-runner"],
+      "versioning": "regex:^alpine-(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)$"
     }
   ],
   "regexManagers": [
