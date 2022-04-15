@@ -9,7 +9,13 @@
   "pinDigests": true,
   "packageRules": [
     {
+      "description": "Don't pin official action digests",
+      "matchPackagePrefixes": ["actions/"],
+      "pinDigests": false
+    },
+    {
       "description": "Schedule digest updates weekly",
+      "excludePackagePrefixes": ["actions/"],
       "matchUpdateTypes": ["digest"],
       "schedule": ["every 7 days"],
       "automerge": true
