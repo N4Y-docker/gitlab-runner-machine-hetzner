@@ -1,0 +1,26 @@
+name: Docker build
+
+on:
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.sha }}
+  cancel-in-progress: true
+
+env:
+  IMAGE_NAME: gitlab-runner-machine-hetzner
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Identify version to build
+        run: |
+          egrep "^ARG DOCKER_MACHINE_DRIVER_HETZNER_VERSION=" Dockerfile | sed "s|^ARG ||" >> $GITHUB_ENV
+          echo "GITLAB_RUNNER_VERSION=$(egrep "^FROM gitlab/gitlab-runner:" Dockerfile | awk '{print $2}' | cut -d: -f2 | cut -d@ -f1)" >> $GITHUB_ENV
+
+      - name: Build image
+        run: docker build . --file Dockerfile --tag "$IMAGE_NAME" --cache-from "ghcr.io/${{ github.repository }}/$IMAGE_NAME:latest"
