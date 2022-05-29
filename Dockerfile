@@ -16,7 +16,7 @@ WORKDIR /build
 RUN git clone https://github.com/JonasProgrammer/docker-machine-driver-hetzner . && git checkout "${DOCKER_MACHINE_DRIVER_HETZNER_VERSION}" && rm -rf .git
 
 
-FROM golang:1.18.2-alpine@sha256:e6b729ae22a2f7b6afcc237f7b9da3a27151ecbdcd109f7ab63a42e52e750262 AS builder-go
+FROM golang:1.18.2-alpine@sha256:4795c5d21f01e0777707ada02408debe77fe31848be97cf9fa8a1462da78d949 AS builder-go
 
 ARG BUILD_USER_UID=76543
 ARG BUILD_USER_GID=76543 
