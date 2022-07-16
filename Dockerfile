@@ -1,5 +1,5 @@
 # renovate: datasource=github-releases depName=JonasProgrammer/docker-machine-driver-hetzner
-ARG DOCKER_MACHINE_DRIVER_HETZNER_VERSION=3.7.1
+ARG DOCKER_MACHINE_DRIVER_HETZNER_VERSION=3.8.0
 
 FROM alpine/git:v2.36.1@sha256:3c4fe48ce2a0393efe8e8b3f23e7bbd99212478a1c86a43d9bfba713bb90fc65 AS builder-git
 
