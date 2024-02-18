@@ -31,6 +31,6 @@ WORKDIR /build
 RUN GOCACHE=/build/.gocache CGO_ENABLED=0 GOOS=linux go build -o docker-machine-driver-hetzner
 
 
-FROM gitlab/gitlab-runner:alpine-v15.11.1@sha256:62d7c026513082fee95ac1666c6ad2d67d4417325d963ec539be4912e6d35623
+FROM gitlab/gitlab-runner:alpine-v16.9.0@sha256:71234014fa68ed767d5d99fa5b3b111c3a241ca6348a8ea65c086cc507bb5505
 
 COPY --from=builder-go --chown=0:0 /build/docker-machine-driver-hetzner /usr/bin/
