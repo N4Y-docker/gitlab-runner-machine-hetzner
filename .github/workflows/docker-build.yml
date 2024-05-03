@@ -48,6 +48,6 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           annotations: ${{ steps.meta.outputs.annotations }}
-          cache-from: ${{ steps.custom-meta.outputs.base-image-name }}:buildcache
+          cache-from: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:buildcache
         env:
           SOURCE_DATE_EPOCH: 0
