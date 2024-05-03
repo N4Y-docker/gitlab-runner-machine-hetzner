@@ -49,6 +49,13 @@ jobs:
               steps.version-meta.outputs.DOCKER_MACHINE_DRIVER_HETZNER_VERSION
             }},enable=true
 
+      - name: Extract image name
+        id: custom-meta
+        run: |
+          echo "image-name=${DOCKER_TAG%%:*}" | tee -a $GITHUB_OUTPUT
+        env:
+          DOCKER_TAG: ${{ fromJSON(steps.meta.outputs.json).tags[0] }}
+
       - name: Log in to GHCR
         uses: docker/login-action@e92390c5fb421da1463c202d546fed0ec5c39f20 # v3.1.0
         with:
@@ -63,7 +70,7 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           annotations: ${{ steps.meta.outputs.annotations }}
           push: true
-          cache-from: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:buildcache
-          cache-to: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:buildcache
+          cache-from: ${{ steps.custom-meta.outputs.image-name }}:buildcache
+          cache-to: ${{ steps.custom-meta.outputs.image-name }}:buildcache
         env:
           SOURCE_DATE_EPOCH: 0
